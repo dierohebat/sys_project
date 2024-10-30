@@ -47,10 +47,10 @@ jobs:
       - run:
           name: Download ngrok
           command: |
-            curl -O https://bin.equinox.io/c/111111/ngrok-stable-linux-amd64.zip  # เปลี่ยน URL ถ้าจำเป็น
-            unzip ngrok-stable-linux-amd64.zip
+            curl -o ngrok.zip https://bin.equinox.io/c/111111/ngrok-stable-linux-amd64.zip  # อัปเดต URL ที่นี่
+            unzip ngrok.zip
             sudo mv ngrok /usr/local/bin
-            rm ngrok-stable-linux-amd64.zip  # ลบไฟล์ ZIP หลังจากติดตั้ง
+            rm ngrok.zip  # ลบไฟล์ ZIP หลังจากติดตั้ง
       - run:
           name: Start ngrok
           command: ngrok http 80 &  # รัน ngrok ใน background
