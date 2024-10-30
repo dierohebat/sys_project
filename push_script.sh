@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Starting deployment..."
+echo "Starting push..."
 
 # ล็อกอินเข้า Docker Hub
 echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
@@ -25,4 +25,4 @@ else
     exit 1
 fi
 
-echo "Deployment complete!"
+echo "push complete!"
