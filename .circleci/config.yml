@@ -40,10 +40,10 @@ jobs:
     steps:
       - run:
           name: Pull Docker Image
-          command: docker pull your-docker-username/your-image-name:latest
+          command: docker pull suvarotz/myapp:latest
       - run:
           name: Run Docker Container
-          command: docker run -d -p 80:80 your-docker-username/your-image-name:latest
+          command: docker run -d -p 80:80 suvarotz/myapp:latest
 
 workflows:
   version: 2
