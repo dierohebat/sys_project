@@ -23,9 +23,9 @@ jobs:
   push:
     docker:
       - image: circleci/node:14
-    steps:
+      
       - checkout
-      - setup_remote_docker:  
+      - setup_remote_docker:
           docker_layer_caching: true
       - run:
           name: Set execute permission
@@ -33,6 +33,7 @@ jobs:
       - run:
           name: push application
           command: ./push_script.sh
+
 
 workflows:
   version: 2
