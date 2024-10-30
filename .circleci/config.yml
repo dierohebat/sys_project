@@ -45,15 +45,15 @@ jobs:
           name: Run Docker Container
           command: docker run -d -p 80:80 suvarotz/myapp:latest
       - run:
-          name: Download ngrok
+          name: Install ngrok
           command: |
-            curl -o ngrok.zip https://bin.equinox.io/c/111111/ngrok-stable-linux-amd64.zip  # อัปเดต URL ที่นี่
-            unzip ngrok.zip
-            sudo mv ngrok /usr/local/bin
-            rm ngrok.zip  # ลบไฟล์ ZIP หลังจากติดตั้ง
+            curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo apt-key add -
+            echo "deb https://ngrok-agent.s3.amazonaws.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/ngrok.list
+            sudo apt-get update
+            sudo apt-get install ngrok
       - run:
           name: Start ngrok
-          command: ngrok http 80 &  # รัน ngrok ใน background
+          command: ngrok http 80 &  # ใช้ & เพื่อรัน ngrok ใน background
 
 workflows:
   version: 2
