@@ -23,8 +23,8 @@ jobs:
   push:
     docker:
       - image: circleci/node:14
-    steps:  # เพิ่มคีย์ steps ที่ขาด
-      - checkout  # เพิ่มการ checkout โค้ดใน push job
+    steps:
+      - checkout
       - setup_remote_docker:
           docker_layer_caching: true
       - run:
@@ -33,6 +33,17 @@ jobs:
       - run:
           name: Push application
           command: ./push_script.sh
+
+  deploy:
+    machine:
+      enabled: true
+    steps:
+      - run:
+          name: Pull Docker Image
+          command: docker pull your-docker-username/your-image-name:latest
+      - run:
+          name: Run Docker Container
+          command: docker run -d -p 80:80 your-docker-username/your-image-name:latest
 
 workflows:
   version: 2
@@ -45,3 +56,6 @@ workflows:
       - push:
           requires:
             - build
+      - deploy:  # เพิ่ม job deploy
+          requires:
+            - push
