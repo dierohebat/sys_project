@@ -23,17 +23,16 @@ jobs:
   push:
     docker:
       - image: circleci/node:14
-      
-      - checkout
+    steps:  # เพิ่มคีย์ steps ที่ขาด
+      - checkout  # เพิ่มการ checkout โค้ดใน push job
       - setup_remote_docker:
           docker_layer_caching: true
       - run:
           name: Set execute permission
           command: chmod +x push_script.sh
       - run:
-          name: push application
+          name: Push application
           command: ./push_script.sh
-
 
 workflows:
   version: 2
